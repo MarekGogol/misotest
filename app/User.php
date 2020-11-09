@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Admin\Eloquent\Authenticatable;
 use Admin\Fields\Group;
