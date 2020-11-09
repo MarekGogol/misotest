@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::get('/uprava-clanku/{slug}', 'HomeController@show');
 Route::post('/store', 'HomeController@store');
-Route::post('/update', 'HomeController@update');
+Route::post('/update/{id}', 'HomeController@update');

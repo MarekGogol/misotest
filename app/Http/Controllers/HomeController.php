@@ -19,9 +19,39 @@ class HomeController extends Controller
     {
         $article = Article::findBySlugOrFail($slug);
 
-        return $article;
+        return view('layouts.article', compact('article'));
     }
 
+    /**
+     * Validacia pomocou crudadminu, nic spolocne s laravelom
+     *
+     * @return  [type]
+     */
+    public function update($id)
+    {
+        $article = Article::findOrFail($id);
+
+        //Bud Article::validator(), alebo ked pracujeme nad zaznamom, tak $article->validator().
+        //Validacia sa v tychto dvoch prikladoch moze spravat inak, napr obrazok je povinny len ked nie je vyplneny,
+        //pri existujucom zazname uz obrazok existuje, tak validacia prejde aj bez obrazku... A dalsie podobne pravidla
+        //sa mozu ukazat.
+        $validator = $article->validator()->only(['name', 'content', 'image'])->merge([
+            'author' => 'required|numeric'
+        ])->validate();
+
+        $article->update($validator->getData());
+
+        //Pri vytvarani
+        // Article::create($validator->getData());
+
+        return ['ok'];
+    }
+
+    /**
+     * Validacia pomocou cisteho laravelu
+     *
+     * @param  Request  $request
+     */
     public function store(Request $request)
     {
         Validator::make($request->all(), [

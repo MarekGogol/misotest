@@ -63,5 +63,5 @@ return [
     /*
      * Slugs History for 302 redirects of changed slugs
      */
-    'sluggable_history' => false,
+    'sluggable_history' => true,
 ];
