@@ -7,9 +7,11 @@
         <title>Laravel</title>
 
         <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body class="antialiased">
-        <div class="container">
+        <div class="container" id="app">
             @yield('content')
         </div>
     </body>
