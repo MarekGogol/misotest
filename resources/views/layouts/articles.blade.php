@@ -23,7 +23,7 @@
 <hr>
 
 @foreach($articles as $article)
-    <h2><a href="{{ action('HomeController@update', $article->getSlug()) }}">{{ $article->name }}</a></h2>
+    <h2><a href="{{ action('HomeController@show', $article->getSlug()) }}">{{ $article->name }}</a></h2>
     <p>{!! $article->content !!}</p>
     <img src="{{ $article->image->resize(200, 200) }}">
 @endforeach
